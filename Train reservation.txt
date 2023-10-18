@@ -1,0 +1,123 @@
+import java.util.*;
+class Train
+{
+    private String trainName;
+    private int availableSeats;
+    public String passName[]=new String[100];
+    public int passAge[]=new int[100];
+    int count=1,nop;
+    Train(String[] passName,int[] passAge)
+    {
+        this.passName=passName;
+        this.passAge=passAge;
+    }
+    
+    public void setA(String name)
+    {
+        trainName=name;
+    }
+    public String getA()
+    {
+        return trainName;
+    }
+    Train(){}
+   
+}
+public class Main
+{
+public static void main (String[] args)
+{
+        Scanner sc=new Scanner(System.in);
+        int count=1,n;
+        String passName[]=new String[100];
+        int passAge[]=new int[100];
+        String trainName;
+        int nop,availableSeats=50,j=0;
+        ArrayList<String> s=new ArrayList<String>();
+        for(int i=0;i<75;i++)
+        {
+            System.out.print("*");
+        }
+        System.out.println("\n\t\tWelcome to the Railway Ticket Reservation System!");
+        for(int i=0;i<75;i++)
+        {
+            System.out.print("*");
+        }
+        do{
+        System.out.println("\nplease choose an option:");
+        System.out.println("1.Book a ticket\n2.Exit");
+        n=sc.nextInt();
+        switch(n)
+        {
+            case 1:
+                System.out.println("Enter the Train Name:");
+                trainName=sc.next();
+                Train t=new Train();
+                t.setA(trainName);
+                // String q=sc.nextLine();
+                System.out.println("Enter the number of tickets you want to book:");
+                 nop=sc.nextInt();
+                System.out.print("Passenger Detais:\n");
+                for(int i=1;i<=nop;i++)
+                {
+                System.out.println("Passenger "+i+" Details:");
+                passName[i]=sc.next();
+                if(s.contains(passName[i]))
+                {
+                    System.out.println("Name already exists!");
+                    i=i-1;
+                    continue;
+                }
+                else
+                {
+                    sc.nextLine();
+                passAge[i]=sc.nextInt();
+                Train t1=new Train(passName,passAge);
+                s.add(passName[i]);
+                }
+                }
+                for(int i=0;i<75;i++)
+                {
+                  System.out.print("*");
+                }
+                System.out.print("\n\t\tYour Ticket Details\n");
+                for(int i=0;i<75;i++)
+                {
+                System.out.print("*");
+                }
+                System.out.print("\n\t\tTrain Name: "+t.getA());
+                System.out.println();
+                for(int i=0;i<75;i++)
+                {
+                  System.out.print("-");
+                }
+                System.out.print("\n\t\tPassenger Detais\n");
+                for(int i=0;i<75;i++)
+                {
+                  System.out.print("-");
+                }
+                System.out.print("\nPassenger Name    Passenger Age    Seat Number\n");
+                for(int i=1;i<=nop;i++)
+                {
+                    System.out.printf("%s\t\t\t%d\t\t%d\n",passName[i],passAge[i],count);
+                    count++;
+                }
+                availableSeats=availableSeats-nop;
+                for(int i=0;i<75;i++)
+                {
+                  System.out.print("-");
+                }
+                System.out.println("\nTicket(s) booked successfully!");
+                System.out.println("Seats remaining:"+(availableSeats));
+                for(int i=0;i<75;i++)
+                {
+                  System.out.print("*");
+                }
+                break;
+                case 2:
+                    System.out.println("Thank you for using the Ticket Reservation System. Goodbye!");
+                    break;
+        }
+        }while(n!=2);
+    }
+}
